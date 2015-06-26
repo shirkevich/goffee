@@ -9,6 +9,7 @@ import (
 	"github.com/goffee/goffee/queue"
 	"github.com/keighl/mandrill"
 	"github.com/parnurzeal/gorequest"
+	"bitbucket.org/ckvist/twilio/twirest"
 )
 
 var (
@@ -16,6 +17,11 @@ var (
 	MandrillKey    string
 	mandrillClient *mandrill.Client
 	SlackUrl       string
+	TwilioSid			 string
+	TwilioToken		 string
+	TwilioFromNumber string
+	GroupEmail		 string
+	Phones				 string
 )
 
 func Run() {
@@ -64,8 +70,8 @@ func sendMessage(c data.Check, u data.User) {
 	text = fmt.Sprintf(text, subject, c.UpdatedAt.Format(time.Kitchen))
 
 	message := &mandrill.Message{}
-	message.AddRecipient(u.Email, u.Name, "to")
-	message.FromEmail = "no-reply@goffee.io"
+	message.AddRecipient(GroupEmail, "Alerts channel", "to")
+	message.FromEmail = "noreply@excursiopedia.org"
 	message.FromName = "Goffee Notifier"
 	message.Subject = subject
 	message.HTML = html
@@ -75,17 +81,32 @@ func sendMessage(c data.Check, u data.User) {
 	if err != nil {
 		fmt.Printf("%s - %s\n", err, responses)
 	} else {
-		fmt.Printf("Notifying via email: %s\n", u.Email)
+		fmt.Printf("Notifying via email: %s\n", GroupEmail)
 	}
 
 	request := gorequest.New()
 	jsonMessage := `{"text":"` + text + `", "channel":"#ops", "username":"goffee"}`
-	resp, body, errs := request.Post(SlackUrl).Send(jsonMessage).End()
+	_, _, errs := request.Post(SlackUrl).Send(jsonMessage).End()
 	if errs != nil {
-		fmt.Printf("%s %v %v", errs, resp, body)
+		fmt.Printf("%s", errs)
 	} else {
 		fmt.Printf("Sent notification to ops channel\n")
 	}
+
+	client := twirest.NewClient(TwilioSid, TwilioToken)
+
+	msg := twirest.SendMessage{
+					Text: text,
+					To:   Phones,
+					From: TwilioFromNumber}
+
+	resp, err := client.Request(msg)
+	if err != nil {
+					fmt.Printf("%s", err)
+	} else {
+		fmt.Printf("Message to: %v %v", Phones, resp.Message.Status)
+	}
+
 }
 
 func Wait() {

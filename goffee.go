@@ -31,6 +31,11 @@ func init() {
 	var gitHubClientSecret string
 	var mandrillKey string
 	var slackUrl string
+	var phones string
+  var twilioSid string
+	var twilioToken string
+	var twilioFromNumber string
+	var groupEmail string
 	var sessionSecret string
 
 	flag.BoolVar(&webMode, "webmode", false, "Run goffee in webmode")
@@ -44,6 +49,11 @@ func init() {
 	flag.StringVar(&gitHubClientSecret, "secret", "", "GitHub client Secret")
 	flag.StringVar(&mandrillKey, "mandrill", "", "Mandrill API key")
 	flag.StringVar(&slackUrl, "slack", "", "Slack webhook url")
+	flag.StringVar(&phones, "phones", "", "Phones for alerts notification")
+	flag.StringVar(&groupEmail, "email", "", "Group email for notification")
+	flag.StringVar(&twilioSid, "twiliosid", "", "twilio sid")
+	flag.StringVar(&twilioToken, "twiliotoken", "", "twilio token")
+	flag.StringVar(&twilioFromNumber, "twiliofromnumber", "", "twilio from number")
 	flag.StringVar(&mysql, "mysql", "", "MySQL connection string")
 	flag.StringVar(&sessionSecret, "sessionsecret", "", "The session secret for the web UI")
 
@@ -67,6 +77,11 @@ func init() {
 		}
 		notifier.MandrillKey = mandrillKey
 		notifier.SlackUrl = slackUrl
+		notifier.Phones = phones
+		notifier.GroupEmail = groupEmail
+		notifier.TwilioSid = twilioSid
+		notifier.TwilioToken = twilioToken
+		notifier.TwilioFromNumber = twilioFromNumber
 	}
 
 	if webMode {

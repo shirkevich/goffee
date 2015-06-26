@@ -3,6 +3,10 @@
 	"GoVersion": "go1.4.1",
 	"Deps": [
 		{
+			"ImportPath": "bitbucket.org/ckvist/twilio/twirest",
+			"Rev": "ceea1fc2b36b499d88ce826acc1124fed0ba8b75"
+		},
+		{
 			"ImportPath": "github.com/garyburd/redigo/internal",
 			"Rev": "61e2910408efd40dafb3c7d856a4cf8aeb5fb1c6"
 		},
