@@ -4,9 +4,6 @@ import (
 	"flag"
 	"log"
 
-	"github.com/goffee/goffee/Godeps/_workspace/src/github.com/gorilla/sessions"
-	"github.com/goffee/goffee/Godeps/_workspace/src/golang.org/x/oauth2"
-	"github.com/goffee/goffee/Godeps/_workspace/src/golang.org/x/oauth2/github"
 	"github.com/goffee/goffee/data"
 	"github.com/goffee/goffee/notifier"
 	"github.com/goffee/goffee/probe"
@@ -15,6 +12,9 @@ import (
 	"github.com/goffee/goffee/web"
 	"github.com/goffee/goffee/web/controllers"
 	"github.com/goffee/goffee/writer"
+	"github.com/gorilla/sessions"
+	"golang.org/x/oauth2"
+	"golang.org/x/oauth2/github"
 )
 
 var webMode bool
@@ -30,6 +30,7 @@ func init() {
 	var gitHubClientID string
 	var gitHubClientSecret string
 	var mandrillKey string
+	var slackUrl string
 	var sessionSecret string
 
 	flag.BoolVar(&webMode, "webmode", false, "Run goffee in webmode")
@@ -42,6 +43,7 @@ func init() {
 	flag.StringVar(&gitHubClientID, "clientid", "", "Github client ID")
 	flag.StringVar(&gitHubClientSecret, "secret", "", "GitHub client Secret")
 	flag.StringVar(&mandrillKey, "mandrill", "", "Mandrill API key")
+	flag.StringVar(&slackUrl, "slack", "", "Slack webhook url")
 	flag.StringVar(&mysql, "mysql", "", "MySQL connection string")
 	flag.StringVar(&sessionSecret, "sessionsecret", "", "The session secret for the web UI")
 
@@ -60,7 +62,11 @@ func init() {
 		if mandrillKey == "" {
 			log.Fatal("No Mandrill API key set!")
 		}
+		if slackUrl == "" {
+			log.Fatal("No Slack URL set!")
+		}
 		notifier.MandrillKey = mandrillKey
+		notifier.SlackUrl = slackUrl
 	}
 
 	if webMode {

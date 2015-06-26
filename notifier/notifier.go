@@ -5,15 +5,17 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/goffee/goffee/Godeps/_workspace/src/github.com/keighl/mandrill"
 	"github.com/goffee/goffee/data"
 	"github.com/goffee/goffee/queue"
+	"github.com/keighl/mandrill"
+	"github.com/parnurzeal/gorequest"
 )
 
 var (
 	exit           = make(chan bool)
 	MandrillKey    string
 	mandrillClient *mandrill.Client
+	SlackUrl       string
 )
 
 func Run() {
@@ -44,8 +46,6 @@ func run() {
 }
 
 func sendMessage(c data.Check, u data.User) {
-	println("Notifying via email: " + u.Email)
-
 	var subject string
 
 	if c.Success {
@@ -70,9 +70,22 @@ func sendMessage(c data.Check, u data.User) {
 	message.Subject = subject
 	message.HTML = html
 	message.Text = text
-	message.Subaccount = "goffee"
 
-	mandrillClient.MessagesSend(message)
+	responses, err := mandrillClient.MessagesSend(message)
+	if err != nil {
+		fmt.Printf("%s - %s\n", err, responses)
+	} else {
+		fmt.Printf("Notifying via email: %s\n", u.Email)
+	}
+
+	request := gorequest.New()
+	jsonMessage := `{"text":"` + text + `", "channel":"#ops", "username":"goffee"}`
+	resp, body, errs := request.Post(SlackUrl).Send(jsonMessage).End()
+	if errs != nil {
+		fmt.Printf("%s %v %v", errs, resp, body)
+	} else {
+		fmt.Printf("Sent notification to ops channel\n")
+	}
 }
 
 func Wait() {

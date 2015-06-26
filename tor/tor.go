@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/goffee/goffee/Godeps/_workspace/src/github.com/hailiang/gosocks"
+	"h12.me/socks"
 )
 
 // Your torrc should have these lines

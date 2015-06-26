@@ -3,9 +3,9 @@ package helpers
 import (
 	"errors"
 
-	"github.com/goffee/goffee/Godeps/_workspace/src/github.com/gorilla/sessions"
-	"github.com/goffee/goffee/Godeps/_workspace/src/github.com/zenazn/goji/web"
 	"github.com/goffee/goffee/data"
+	"github.com/gorilla/sessions"
+	"github.com/zenazn/goji/web"
 )
 
 // CurrentSession returns the current session

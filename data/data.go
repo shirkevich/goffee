@@ -3,10 +3,10 @@ package data
 import (
 	"time"
 
-	_ "github.com/goffee/goffee/Godeps/_workspace/src/github.com/go-sql-driver/mysql"
-	"github.com/goffee/goffee/Godeps/_workspace/src/github.com/jinzhu/gorm"
-	_ "github.com/goffee/goffee/Godeps/_workspace/src/github.com/mattn/go-sqlite3"
-	"github.com/goffee/goffee/Godeps/_workspace/src/github.com/vincent-petithory/countries"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/jinzhu/gorm"
+	_ "github.com/mattn/go-sqlite3"
+	"github.com/vincent-petithory/countries"
 )
 
 var db gorm.DB

@@ -6,11 +6,11 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/goffee/goffee/Godeps/_workspace/src/github.com/justinas/nosurf"
-	"github.com/goffee/goffee/Godeps/_workspace/src/github.com/zenazn/goji/web" // ChecksIndex render the checks index for the current user
 	"github.com/goffee/goffee/data"
 	"github.com/goffee/goffee/web/helpers"
 	"github.com/goffee/goffee/web/render"
+	"github.com/justinas/nosurf"
+	"github.com/zenazn/goji/web" // ChecksIndex render the checks index for the current user
 )
 
 func ChecksIndex(c web.C, w http.ResponseWriter, req *http.Request) {

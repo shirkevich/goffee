@@ -3,7 +3,7 @@ package queue
 import (
 	"time"
 
-	"github.com/goffee/goffee/Godeps/_workspace/src/github.com/garyburd/redigo/redis"
+	"github.com/garyburd/redigo/redis"
 )
 
 var (
@@ -11,7 +11,7 @@ var (
 )
 
 const batchSize = 250
-const timeout = 5
+const timeout = 2
 
 func InitQueue(redisServer string) {
 	pool = newPool(redisServer)

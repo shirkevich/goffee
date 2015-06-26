@@ -1,9 +1,6 @@
 {
 	"ImportPath": "github.com/goffee/goffee",
-	"GoVersion": "go1.4",
-	"Packages": [
-		"./..."
-	],
+	"GoVersion": "go1.4.1",
 	"Deps": [
 		{
 			"ImportPath": "github.com/garyburd/redigo/internal",
@@ -39,10 +36,6 @@
 			"Rev": "aa5e036e6c44aec69a32eb41097001978b29ad31"
 		},
 		{
-			"ImportPath": "github.com/hailiang/gosocks",
-			"Rev": "b913be938dea98d094c3942c23e85f8dd42021ff"
-		},
-		{
 			"ImportPath": "github.com/hypebeast/gojistatic",
 			"Rev": "99b778e145961024738f4cd7c67e9d8766afc7f1"
 		},
@@ -57,8 +50,8 @@
 		},
 		{
 			"ImportPath": "github.com/keighl/mandrill",
-			"Comment": "0.0.3-1-g2562312",
-			"Rev": "2562312097c4c50a6bbab7d9f374d09a3756fe9c"
+			"Comment": "1.0.0-10-gc34751e",
+			"Rev": "c34751e15057567e1a6ce287231a9ba5a9f3df60"
 		},
 		{
 			"ImportPath": "github.com/lib/pq/hstore",
@@ -78,6 +71,11 @@
 			"ImportPath": "github.com/oschwald/maxminddb-golang",
 			"Comment": "v0.2.0-9-g81c4e04",
 			"Rev": "81c4e045a5fb2dd66cde4a995a5591d79315efa3"
+		},
+		{
+			"ImportPath": "github.com/parnurzeal/gorequest",
+			"Comment": "v0.2.4",
+			"Rev": "30f504965773bcd6855e423fabea0fc75cdfefef"
 		},
 		{
 			"ImportPath": "github.com/unrolled/secure",
@@ -102,8 +100,16 @@
 			"Rev": "5058c78c3627b31e484a81463acd51c7cecc06f3"
 		},
 		{
+			"ImportPath": "golang.org/x/net/publicsuffix",
+			"Rev": "5058c78c3627b31e484a81463acd51c7cecc06f3"
+		},
+		{
 			"ImportPath": "golang.org/x/oauth2",
 			"Rev": "d8ba9d6c175596d5517faeeb51246a6e5f925e31"
+		},
+		{
+			"ImportPath": "h12.me/socks",
+			"Rev": "c19db44edd3ca0f7992809b55412dbb57805bc8e"
 		}
 	]
 }

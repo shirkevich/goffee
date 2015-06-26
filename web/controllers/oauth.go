@@ -3,12 +3,12 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/goffee/goffee/Godeps/_workspace/src/github.com/google/go-github/github"
-	"github.com/goffee/goffee/Godeps/_workspace/src/github.com/gorilla/sessions"
-	"github.com/goffee/goffee/Godeps/_workspace/src/github.com/zenazn/goji/web"
-	"github.com/goffee/goffee/Godeps/_workspace/src/golang.org/x/oauth2"
 	"github.com/goffee/goffee/data"
 	"github.com/goffee/goffee/web/helpers"
+	"github.com/google/go-github/github"
+	"github.com/gorilla/sessions"
+	"github.com/zenazn/goji/web"
+	"golang.org/x/oauth2"
 )
 
 var OAuthConf *oauth2.Config
